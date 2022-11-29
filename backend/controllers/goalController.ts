@@ -1,6 +1,6 @@
-const asyncHandler = require('express-async-handler')
+import asyncHandler from 'express-async-handler'
 
-const Goal = require('../model/goalModel')
+import Goal from '../model/goalModel'
 
 // @desc    Get goals
 // @route   GET /api/goals
@@ -57,16 +57,11 @@ const deletGoal = asyncHandler(async (req, res) => {
     throw new Error('Goal not found!')
   }
 
-  await Goal.findOneAndDelete(req.params.id)
+  await goal.remove()
 
   res
     .status(200)
     .json({ message: `The goal with ${req.params.id} has been deleted` })
 })
 
-module.exports = {
-  getGoals,
-  setGoal,
-  updateGoal,
-  deletGoal,
-}
+export { getGoals, setGoal, updateGoal, deletGoal }

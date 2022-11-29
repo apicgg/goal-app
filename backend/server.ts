@@ -1,13 +1,15 @@
-const express = require('express')
-const { errorHandler } = require('./middleware/errorMiddleware')
-const dotenv = require('dotenv').config()
-const colors = require('colors')
-const connectDB = require('./config/db')
+import express, { Application } from 'express'
+import { errorHandler } from './middleware/errorMiddleware'
+import 'dotenv/config'
+import colors from 'colors'
+import connectDB from './config/db'
 const port = process.env.PORT || 8000
+
+// dotenv.config()
 
 connectDB()
 
-const app = express()
+const app: Application = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
