@@ -6,7 +6,7 @@ import Goal from '../model/goalModel'
 // @route   GET /api/goals
 // @access  Private
 
-const getGoals = asyncHandler(async (req, res) => {
+const getGoals = asyncHandler(async (_req, res) => {
   const goals = await Goal.find()
   res.status(200).json(goals)
 })

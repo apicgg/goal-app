@@ -2,17 +2,16 @@
   "name": "mern-stack",
   "version": "1.0.0",
   "description": "Goalsetter App built with MERN stack and TypeScript",
-  "main": "server.js",
+  "main": "backend/server.ts",
   "scripts": {
+    "watch": "tsc -w",
+    "dev": "nodemon src/server.ts",
     "start": "node build/server.js",
-    "dev": "nodemon backend/server.ts",
-    "build": "tsc",
-    "prettier": "prettier --write ."
+    "build": "tsc"
   },
   "author": "Anurag Pramanik <p.anurag@outlook.com>",
   "license": "MIT",
   "dependencies": {
-    "colors": "^1.4.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",

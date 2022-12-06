@@ -1,7 +1,6 @@
 import express, { Application } from 'express'
 import { errorHandler } from './middleware/errorMiddleware'
 import 'dotenv/config'
-import colors from 'colors'
 import connectDB from './config/db'
 const port = process.env.PORT || 8000
 

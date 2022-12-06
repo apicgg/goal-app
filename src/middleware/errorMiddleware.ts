@@ -1,4 +1,4 @@
-import { Response, ErrorRequestHandler } from 'express'
+import { Response } from 'express'
 
 const errorHandler = (
   err: any,
