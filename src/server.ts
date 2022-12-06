@@ -1,10 +1,10 @@
 import express, { Application } from 'express'
 import { errorHandler } from './middleware/errorMiddleware'
-import 'dotenv/config'
+import dotenv from 'dotenv'
 import connectDB from './config/db'
 const port = process.env.PORT || 8000
 
-// dotenv.config()
+dotenv.config()
 
 connectDB()
 
