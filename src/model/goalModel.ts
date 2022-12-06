@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose'
 
-// Create an interface represnting a document in MongoDB
+// Create an interface representing a document in MongoDB
 interface Goal {
   text: string
 }

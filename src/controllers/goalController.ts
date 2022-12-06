@@ -49,7 +49,7 @@ const updateGoal = asyncHandler(async (req, res) => {
 // @route   DELETE /api/goals/:id
 // @access  Private
 
-const deletGoal = asyncHandler(async (req, res) => {
+const deleteGoal = asyncHandler(async (req, res) => {
   const goal = await Goal.findById(req.params.id)
 
   if (!goal) {
@@ -64,4 +64,4 @@ const deletGoal = asyncHandler(async (req, res) => {
     .json({ message: `The goal with ${req.params.id} has been deleted` })
 })
 
-export { getGoals, setGoal, updateGoal, deletGoal }
+export { getGoals, setGoal, updateGoal, deleteGoal }
