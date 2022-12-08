@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 
-import Goal from '../model/goalModel'
+import Goal from '../models/goalModel'
 
 // @desc    Get goals
 // @route   GET /api/goals
