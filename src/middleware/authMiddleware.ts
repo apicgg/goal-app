@@ -5,7 +5,7 @@ import User from 'src/models/userModel'
 
 const protect = asyncHandler(async (req: Request, res, next: NextFunction) => {
   let token: string | JwtPayload
-  const jwtSecret: Secret = process.env.JWT_SECRET
+  const jwtSecret: Secret = process.env.JWT_SECRET!
 
   if (
     req.headers.authorization &&

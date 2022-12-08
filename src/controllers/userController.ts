@@ -1,5 +1,5 @@
 import asyncHandler from 'express-async-handler'
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import User from '../models/userModel'
 import { Request, Response } from 'express'
