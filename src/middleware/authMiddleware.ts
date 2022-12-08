@@ -1,7 +1,7 @@
 import { NextFunction, Request } from 'express'
 import asyncHandler from 'express-async-handler'
 import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
-import User from 'src/models/userModel'
+import User from '../models/userModel'
 
 const protect = asyncHandler(async (req: Request, res, next: NextFunction) => {
   let token: string | JwtPayload
@@ -25,9 +25,12 @@ const protect = asyncHandler(async (req: Request, res, next: NextFunction) => {
       next()
     } catch (error) {
       console.log(error)
-      res.status(401)
+      res.status(401).json({ message: 'Not authorized' })
       throw new Error('Not authorized')
     }
+  }
+  if (!token!) {
+    res.status(401).json({ message: 'No token found!' })
   }
 })
 
