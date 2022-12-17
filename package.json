@@ -2,10 +2,11 @@
   "name": "mern-stack",
   "version": "1.0.0",
   "description": "Goalsetter App built with MERN stack and TypeScript",
-  "main": "backend/server.ts",
+  "main": "server/server.ts",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon build/server.js",
+    "server": "nodemon build/server.js",
+    "client": "yarn --cwd client start",
     "start": "node build/server.js",
     "build": "tsc"
   },
