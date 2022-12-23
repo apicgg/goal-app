@@ -2,11 +2,11 @@
   "name": "mern-stack",
   "version": "1.0.0",
   "description": "Goalsetter App built with MERN stack and TypeScript",
-  "main": "server/server.ts",
+  "main": "server/index.ts",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon build/server.js",
-    "start": "node build/server.js",
+    "dev": "node --watch build/index.js",
+    "start": "node build/index.js",
     "build": "tsc"
   },
   "author": "Anurag Pramanik <p.anurag@outlook.com>",
@@ -25,7 +25,6 @@
     "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.11.9",
     "nodemon": "^2.0.20",
-    "prettier": "^2.7.1",
     "typescript": "^4.9.3"
   }
 }
