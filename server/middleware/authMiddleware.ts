@@ -1,37 +1,42 @@
-import { NextFunction, Request } from 'express'
-import asyncHandler from 'express-async-handler'
-import jwt, { JwtPayload, Secret } from 'jsonwebtoken'
-import User from '../models/userModel'
+import { NextFunction, Request, Response } from "express";
+import asyncHandler from "express-async-handler";
+import jwt, { JwtPayload, Secret } from "jsonwebtoken";
+import User from "../models/userModel";
 
-const protect = asyncHandler(async (req: Request, res, next: NextFunction) => {
-  let token: string | JwtPayload
-  const jwtSecret: Secret = process.env.JWT_SECRET!
+interface JwtPayload {
+  id: string;
+}
 
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
-    try {
-      // Get the token
-      token = req.headers.authorization.split(' ')[1]
+const protect = asyncHandler(
+  async (req: Request, res: Response, next: NextFunction) => {
+    let token: string | JwtPayload;
+    const jwtSecret: Secret = process.env.JWT_SECRET!;
 
-      // Verify the token
-      const decoded = jwt.verify(token, jwtSecret)
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith("Bearer")
+    ) {
+      try {
+        // Get the token
+        token = req.headers.authorization.split(" ")[1];
 
-      // Get the user from the token
-      // TODO: fix the ts error
-      req.user = await User.findById(decoded.id).select('-password')
+        // Verify the token
+        const { id } = jwt.verify(token, jwtSecret) as JwtPayload;
 
-      next()
-    } catch (error) {
-      console.log(error)
-      res.status(401).json({ message: 'Not authorized' })
-      throw new Error('Not authorized')
+        // Get the user from the token
+        (<any>req).user = await User.findById(id).select("-password");
+
+        next();
+      } catch (error) {
+        console.log(error);
+        res.status(401).json({ message: "Not authorized" });
+        throw new Error("Not authorized");
+      }
+    }
+    if (!token!) {
+      res.status(401).json({ message: "No token found!" });
     }
   }
-  if (!token!) {
-    res.status(401).json({ message: 'No token found!' })
-  }
-})
+);
 
-export { protect }
+export { protect };
