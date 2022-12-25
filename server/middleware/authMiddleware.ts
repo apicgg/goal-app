@@ -3,7 +3,7 @@ import asyncHandler from "express-async-handler";
 import jwt, { JwtPayload, Secret } from "jsonwebtoken";
 import User from "../models/userModel";
 
-interface JwtPayload {
+interface DecodedId extends JwtPayload {
   id: string;
 }
 
@@ -21,10 +21,10 @@ const protect = asyncHandler(
         token = req.headers.authorization.split(" ")[1];
 
         // Verify the token
-        const { id } = jwt.verify(token, jwtSecret) as JwtPayload;
+        const { id } = jwt.verify(token, jwtSecret) as DecodedId;
 
         // Get the user from the token
-        (<any>req).user = await User.findById(id).select("-password");
+        req.user = await User.findById(id).select("-password");
 
         next();
       } catch (error) {
