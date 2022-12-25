@@ -4,13 +4,19 @@ import bcrypt from "bcryptjs";
 import User from "../models/userModel";
 import { Request, Response } from "express";
 
+interface UserInput {
+  name: string;
+  email: string;
+  password: string;
+}
+
 // @desc Register user
 // @route POST /api/users
 // @access Public
 
 const registerUser = asyncHandler(async (req: Request, res: Response) => {
   // Get the user details
-  const { name, email, password } = req.body;
+  const { name, email, password }: UserInput = req.body;
 
   // If there is a missing data from req.body
   if (!name || !email || !password) {
@@ -83,8 +89,11 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
 // @access Private
 
 const getMe = asyncHandler(async (req: Request, res: Response) => {
-  // TODO: fix the ts error
-  const { _id, name, email } = await User.findById(req.user.id);
+  const { _id, name, email } = (await User.findById(req.user.id)) as {
+    _id: number;
+    name: string;
+    email: string;
+  };
 
   res.status(200).json({
     id: _id,
