@@ -48,8 +48,7 @@ const updateGoal = asyncHandler(async (req: Request, res: Response) => {
     res.status(404).json({ message: "User doesn't exist" });
   }
 
-  // TODO: Check the below ts error
-  if (goal.user.toString() !== user.id) {
+  if (user && goal.user.toString() !== user.id) {
     res.status(401).json({ message: "Not authorized" });
   }
 
@@ -77,8 +76,7 @@ const deleteGoal = asyncHandler(async (req: Request, res: Response) => {
     res.status(404).json({ message: "user doesn't exist" });
   }
 
-  // TODO: Check the below ts error
-  if (goal.user.toString() !== user.id) {
+  if (user && goal.user.toString() !== user.id) {
     res.status(401).json({ message: "Not authorized" });
   }
 
