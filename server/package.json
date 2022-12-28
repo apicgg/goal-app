@@ -2,7 +2,7 @@
   "name": "mern-stack",
   "version": "1.0.0",
   "description": "Goalsetter App built with MERN stack and TypeScript",
-  "main": "server/index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "watch": "tsc -w",
     "dev": "node --watch build/index.js",
