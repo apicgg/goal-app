@@ -6,7 +6,7 @@ import svgrPlugin from "vite-plugin-svgr";
 export default defineConfig({
   server: {
     proxy: {
-      "/api": "Enter your backend host with port",
+      "/api": "http://localhost:8000",
     },
   },
   plugins: [
