@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const API_URL = "/api/users";
+const API_URL = "/api/users/";
 
 // Register user
-// TODO: add type to userData
-const register = async (userData) => {
+const register = async (userData: unknown) => {
   const response = await axios.post(API_URL, userData);
 
   if (response.data) {
@@ -15,8 +14,9 @@ const register = async (userData) => {
 };
 
 // Login user
-const login = async (userData) => {
-  const response = await axios.post(API_URL + "/login", userData);
+// TODO: fix the login functionality
+const login = async (userData: unknown) => {
+  const response = await axios.post(API_URL + "login", userData);
 
   if (response.data) {
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -26,7 +26,6 @@ const login = async (userData) => {
 };
 
 // Logout user
-// TODO: fix logout not clearing data from localStorage
 const logout = () => {
   localStorage.removeItem("user");
 };
