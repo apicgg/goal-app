@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
 
 import Goal from "../models/goalModel";
-import User from "../models/userModel";
+// import User from "../models/userModel";
 
 // @desc    Get goals
 // @route   GET /api/goals
@@ -42,13 +42,17 @@ const updateGoal = asyncHandler(async (req: Request, res: Response) => {
     throw new Error("Goal not found!");
   }
 
-  const user = await User.findById(req.user.id);
+  // const user = await User.findById(req.user.id);
 
-  if (!user) {
+  if (!req.user) {
     res.status(404).json({ message: "User doesn't exist" });
   }
 
-  if (user && goal.user.toString() !== user.id) {
+  // if (user && goal.user.toString() !== user.id) {
+  //   res.status(401).json({ message: "Not authorized" });
+  // }
+
+  if (goal.user.toString() !== req.user.id) {
     res.status(401).json({ message: "Not authorized" });
   }
 
@@ -70,13 +74,17 @@ const deleteGoal = asyncHandler(async (req: Request, res: Response) => {
     throw new Error("Goal not found!");
   }
 
-  const user = await User.findById(req.user.id);
+  // const user = await User.findById(req.user.id);
 
-  if (!user) {
+  if (!req.user) {
     res.status(404).json({ message: "user doesn't exist" });
   }
 
-  if (user && goal.user.toString() !== user.id) {
+  // if (user && goal.user.toString() !== user.id) {
+  //   res.status(401).json({ message: "Not authorized" });
+  // }
+
+  if (goal.user.toString() !== req.user.id) {
     res.status(401).json({ message: "Not authorized" });
   }
 

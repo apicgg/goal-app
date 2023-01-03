@@ -89,17 +89,18 @@ const loginUser = asyncHandler(async (req: Request, res: Response) => {
 // @access Private
 
 const getMe = asyncHandler(async (req: Request, res: Response) => {
-  const { _id, name, email } = (await User.findById(req.user.id)) as {
-    _id: number;
-    name: string;
-    email: string;
-  };
+  res.status(200).json(req.user);
+  // const { _id, name, email } = (await User.findById(req.user.id)) as {
+  //   _id: number;
+  //   name: string;
+  //   email: string;
+  // };
 
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  //   res.status(200).json({
+  //     id: _id,
+  //     name,
+  //     email,
+  //   });
 });
 
 // Generate the token
