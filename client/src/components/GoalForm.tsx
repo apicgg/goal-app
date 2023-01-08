@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { createGoal } from "../features/goals/goalSlice";
 
 const GoalForm = () => {
   const [text, setText] = useState("");
+
+  const dispatch = useDispatch();
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     setText(event.target.value);
@@ -10,6 +13,9 @@ const GoalForm = () => {
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
+    dispatch(createGoal({ text }));
+    setText("");
   };
 
   return (
