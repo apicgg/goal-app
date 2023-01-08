@@ -1,18 +1,39 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GoalForm from "../components/GoalForm";
+import Spinner from "../components/Spinner";
+import { getGoals, reset } from "../features/goals/goalSlice";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { user } = useSelector((state: any) => state.auth);
+  const { goals, isError, isLoading, message } = useSelector(
+    (state: any) => state.goals
+  );
 
   useEffect(() => {
+    if (isError) {
+      console.log(message);
+    }
+
     if (!user) {
       navigate("/login");
     }
-  }, [user, navigate]);
+
+    dispatch(getGoals());
+
+    // To do something when the component unmounts, return a function inside useEffect
+    return () => {
+      dispatch(reset());
+    };
+  }, [user, navigate, isError, message, dispatch]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
