@@ -18,7 +18,9 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/">Goalsetter</Link>
+        {/* ! TODO: fix the below error while active*/}
+        {/* <Link to="/">Goalsetter</Link> */}
+        <p>Goalsetter</p>
       </div>
       <ul>
         {user ? (
