@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import GoalForm from "../components/GoalForm";
 import Spinner from "../components/Spinner";
@@ -9,9 +9,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state: any) => state.auth);
+  const { user } = useSelector((state: RootStateOrAny) => state.auth);
   const { goals, isError, isLoading, message } = useSelector(
-    (state: any) => state.goals
+    (state: RootStateOrAny) => state.goals
   );
 
   useEffect(() => {
