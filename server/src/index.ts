@@ -1,4 +1,5 @@
-import express, { Application } from "express";
+import path from "path";
+import express, { Application, Request, Response } from "express";
 import { errorHandler } from "./middleware/errorMiddleware";
 import dotenv from "dotenv";
 import connectDB from "./config/db";
@@ -15,6 +16,21 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/goals", require("./routes/goalRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+
+// For deployment
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../../client/dist")));
+
+  app.get("*", (_req: Request, res: Response) =>
+    res.sendFile(
+      path.resolve(__dirname, "../", "../", "client", "dist", "index.html")
+    )
+  );
+} else {
+  app.get("/", (_req: Request, res: Response) =>
+    res.json({ message: "Please set to production" })
+  );
+}
 
 app.use(errorHandler);
 
