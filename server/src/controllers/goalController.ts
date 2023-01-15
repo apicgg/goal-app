@@ -90,9 +90,7 @@ const deleteGoal = asyncHandler(async (req: Request, res: Response) => {
 
   await goal.remove();
 
-  res
-    .status(200)
-    .json({ message: `The goal with ${req.params.id} has been deleted` });
+  res.status(200).json({ id: req.params.id });
 });
 
 export { getGoals, setGoal, updateGoal, deleteGoal };
