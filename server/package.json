@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "node --watch build/index.js",
-    "start": "node build/index.js",
+    "dev": "node --watch dist/index.js",
+    "start": "node dist/index.js",
     "build": "tsc"
   },
   "author": "Anurag Pramanik <p.anurag@outlook.com>",
