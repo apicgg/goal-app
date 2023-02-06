@@ -19,4 +19,4 @@ router.route("/:id").put(protect, updateGoal).delete(protect, deleteGoal);
 
 // router.delete('/:id', deleteGoal)
 
-module.exports = router;
+export default router;

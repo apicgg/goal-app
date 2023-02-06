@@ -3,6 +3,9 @@ import express, { Application, Request, Response } from "express";
 import { errorHandler } from "./middleware/errorMiddleware";
 import dotenv from "dotenv";
 import connectDB from "./config/db";
+import userRoutes from "./routes/userRoutes";
+import goalRoutes from "./routes/goalRoutes";
+
 const port = process.env.PORT || 8000;
 
 dotenv.config();
@@ -14,8 +17,8 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api/goals", require("./routes/goalRoutes"));
-app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/goals", goalRoutes);
+app.use("/api/users", userRoutes);
 
 // For deployment
 app.use(express.static(path.join(__dirname, "../../client/dist")));
