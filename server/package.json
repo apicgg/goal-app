@@ -1,5 +1,5 @@
 {
-  "name": "mern-stack",
+  "name": "goal-app-server",
   "version": "0.0.0",
   "description": "Goalsetter App built with MERN stack and TypeScript",
   "main": "src/index.ts",
