@@ -1,11 +1,11 @@
 {
   "name": "goal-app-client",
+  "version": "0.0.1",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --port 3000",
     "build": "vite build",
+    "dev": "vite --port 3000",
     "lint": "tsc",
     "preview": "vite preview"
   },
