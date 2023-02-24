@@ -7,7 +7,7 @@
   "main": "build/index.js",
   "scripts": {
     "build": "tsc && npm install --prefix client && npm run build --prefix client",
-    "dev": "node --watch dist/index.js",
+    "dev": "node --watch build/index.js",
     "start": "node build/index.js",
     "watch": "tsc -w"
   },
