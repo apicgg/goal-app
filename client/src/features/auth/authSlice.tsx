@@ -1,11 +1,26 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "./authService";
+
+type User = {
+  name: string;
+  email: string;
+  token: string;
+  _id: string;
+};
+
+type UserState = {
+  user: User | null;
+  isError: boolean;
+  isSuccess: boolean;
+  isLoading: boolean;
+  message: unknown;
+};
 
 // Get user from localStorage
 // TODO: use type guard instead
-const user: string | null = JSON.parse(localStorage.getItem("user")!);
+const user: User | null = JSON.parse(localStorage.getItem("user")!);
 
-const initialState = {
+const initialState: UserState = {
   user: user ? user : null,
   isError: false,
   isSuccess: false,

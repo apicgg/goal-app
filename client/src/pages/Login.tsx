@@ -57,6 +57,7 @@ const Login = () => {
       password,
     };
 
+    // @ts-ignore
     dispatch(login(userData));
   };
 
