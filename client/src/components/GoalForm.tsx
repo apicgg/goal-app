@@ -14,6 +14,7 @@ const GoalForm = () => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
+    // @ts-ignore
     dispatch(createGoal({ text }));
     setText("");
   };

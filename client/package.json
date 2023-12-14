@@ -6,8 +6,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite --port 3000",
-    "lint": "tsc",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check-types": "tsc"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",

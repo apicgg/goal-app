@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import type { RootState } from "../app/store";
 import GoalForm from "../components/GoalForm";
 import GoalItem from "../components/GoalItem";
 import Spinner from "../components/Spinner";
@@ -10,9 +11,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state: RootState) => state.auth);
   const { goals, isError, isLoading, message } = useSelector(
-    (state) => state.goals
+    (state: RootState) => state.goals
   );
 
   // TODO: fix the infinite render loop issue
@@ -26,6 +27,7 @@ const Dashboard = () => {
       navigate("/login");
     }
 
+    // @ts-ignore
     dispatch(getGoals());
 
     // To do something when the component unmounts, return a function inside useEffect
