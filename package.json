@@ -6,7 +6,7 @@
   "author": "Anurag Pramanik <p.anurag@outlook.com>",
   "main": "build/index.js",
   "scripts": {
-    "build": "tsc && npm install --prefix client && npm run build --prefix client",
+    "build": "tsc && npm install --prefix frontend && npm run build --prefix frontend",
     "dev": "node --watch build/index.js",
     "start": "node build/index.js",
     "watch": "tsc -w"
