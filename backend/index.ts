@@ -1,10 +1,10 @@
-import path from 'path';
-import express, { Application, Request, Response } from 'express';
-import { errorHandler } from './middleware/errorMiddleware';
-import dotenv from 'dotenv';
-import connectDB from './config/db';
-import userRoutes from './routes/userRoutes';
-import goalRoutes from './routes/goalRoutes';
+import dotenv from "dotenv";
+import express, { Application, Request, Response } from "express";
+import path from "path";
+import connectDB from "./config/db";
+import { errorHandler } from "./middleware/errorMiddleware";
+import goalRoutes from "./routes/goalRoutes";
+import userRoutes from "./routes/userRoutes";
 
 const port = process.env.PORT || 8000;
 
@@ -17,14 +17,16 @@ const app: Application = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/api/goals', goalRoutes);
-app.use('/api/users', userRoutes);
+app.use("/api/goals", goalRoutes);
+app.use("/api/users", userRoutes);
 
 // For deployment
-app.use(express.static(path.join(__dirname, '../client/build')));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-app.get('*', (_req: Request, res: Response) =>
-  res.sendFile(path.resolve(__dirname, '../', 'client', 'build', 'index.html'))
+app.get("*", (_req: Request, res: Response) =>
+  res.sendFile(
+    path.resolve(__dirname, "../", "frontend", "build", "index.html")
+  )
 );
 
 app.use(errorHandler);
