@@ -18,7 +18,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
           </Routes>
         </div>
-      </Router>
+      </>
       <ToastContainer />
     </>
   );
