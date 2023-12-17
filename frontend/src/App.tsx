@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <div className="container">
+        <div className="w-full max-w-[960px] mx-auto my-0 py-0 px-5 text-center">
           <Header />
           <Routes>
             <Route path="/" element={<Dashboard />} />
@@ -18,7 +18,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
           </Routes>
         </div>
-      </>
+      </Router>
       <ToastContainer />
     </>
   );
