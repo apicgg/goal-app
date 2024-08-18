@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { login, reset } from "../features/auth/authSlice";
 
-interface FormData {
+type FormData = {
   email: string;
   password: string;
-}
+};
 
 const Login = () => {
   const [formData, setFormData] = useState<FormData>({

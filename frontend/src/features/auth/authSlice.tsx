@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import authService from "./authService";
+import authService, {
+  UserDataBodyLogin,
+  UserDataForRegister,
+} from "./authService";
 
-type User = {
+export type User = {
   name: string;
   email: string;
   token: string;
@@ -31,7 +34,7 @@ const initialState: UserState = {
 // Register user
 export const register = createAsyncThunk(
   "auth/register",
-  async (user, thunkAPI) => {
+  async (user: UserDataForRegister, thunkAPI) => {
     try {
       return await authService.register(user);
     } catch (error: any) {
@@ -48,18 +51,23 @@ export const register = createAsyncThunk(
 );
 
 // Login user
-export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
-  try {
-    return await authService.login(user);
-  } catch (error: any) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
+export const login = createAsyncThunk(
+  "auth/login",
+  async (user: UserDataBodyLogin, thunkAPI) => {
+    try {
+      return await authService.login(user);
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
 
-    return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 // Logout user
 export const logout = createAsyncThunk("auth/logout", async () => {

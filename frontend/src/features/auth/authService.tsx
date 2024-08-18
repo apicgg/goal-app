@@ -1,28 +1,46 @@
 import axios from "axios";
+import { API_URL } from "../../constants/apiUrl";
+import { User } from "./authSlice";
 
-const API_URL = "/api/users";
+export type UserDataForRegister = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type UserDataBodyLogin = {
+  name: string;
+  email: string;
+};
 
 // Register user
-const register = async (userData: unknown) => {
-  const response = await axios.post(API_URL, userData);
+const register = async (userData: UserDataForRegister) => {
+  try {
+    const response = await axios.post<User>(API_URL, userData);
 
-  if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    if (response.data) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+    }
+
+    return response.data;
+  } catch (error: unknown) {
+    console.error(error);
   }
-
-  return response.data;
 };
 
 // Login user
-// TODO: fix the login functionality
-const login = async (userData: unknown) => {
-  const response = await axios.post(API_URL + "/login", userData);
+const login = async (userData: UserDataBodyLogin) => {
+  try {
+    const response = await axios.post<User>(`${API_URL}/login`, userData);
 
-  if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
+    if (response.data) {
+      localStorage.setItem("user", JSON.stringify(response.data));
+    }
+
+    return response.data;
+  } catch (error: unknown) {
+    console.error(error);
   }
-
-  return response.data;
 };
 
 // Logout user
@@ -35,4 +53,5 @@ const authService = {
   login,
   logout,
 };
+
 export default authService;
